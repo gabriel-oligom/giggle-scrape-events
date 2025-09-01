@@ -3,6 +3,7 @@ import selectorlib
 import smtplib, ssl
 import os
 from dotenv import load_dotenv
+import time
 
 load_dotenv()
 
@@ -28,20 +29,19 @@ def send_email(message):
     host = "smtp.gmail.com"
     port = 465
 
-    username = os.getenv("USERNAME")
-    password = os.getenv("PASSWORD")
+    username = os.getenv("EMAIL_USER")
+    password = os.getenv("EMAIL_PASSWORD")
 
-    receiver = os.getenv("RECEIVER")
+    receiver = os.getenv("EMAIL_RECEIVER")
     context = ssl.create_default_context()
 
     with smtplib.SMTP_SSL(host, port, context=context) as server:
         server.login(username, password)
         server.sendmail(username, receiver, message)
-    print("The email was sent.")
 
 
 def store(extracted):
-    with open("data.txt", "w") as file:
+    with open("data.txt", "a") as file:
         file.write(extracted + "\n")
 
 
@@ -51,12 +51,14 @@ def read(extracted):
 
 
 if __name__ == "__main__":
-    scraped = scrape(URL)
-    extracted = extract(scraped)
-    print(extracted)
+    while True:
+        scraped = scrape(URL)
+        extracted = extract(scraped)
+        print(extracted)
 
-    content = read(extracted)
-    if extracted != "No upcoming tours":
-        if extracted not in content:
-            store(extracted)
-            send_email(message="Hey, a new event was found!")
+        content = read(extracted)
+        if extracted != "No upcoming tours":
+            if not extracted in content:
+                store(extracted)
+                send_email(message="Hey new tour was found!")
+        time.sleep(2)
