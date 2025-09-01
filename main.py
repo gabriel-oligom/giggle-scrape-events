@@ -2,6 +2,9 @@ import requests
 import selectorlib
 import smtplib, ssl
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 URL = "https://programmer100.pythonanywhere.com/tours/"
 HEADERS = {
@@ -25,10 +28,10 @@ def send_email(message):
     host = "smtp.gmail.com"
     port = 465
 
-    username = ""
-    password = ""
+    username = os.getenv("USERNAME")
+    password = os.getenv("PASSWORD")
 
-    receiver = ""
+    receiver = os.getenv("RECEIVER")
     context = ssl.create_default_context()
 
     with smtplib.SMTP_SSL(host, port, context=context) as server:
