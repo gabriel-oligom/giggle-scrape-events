@@ -7,3 +7,7 @@ venv
 data.txt
 
 .env
+
+events.db
+
+example.py
