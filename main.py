@@ -63,8 +63,11 @@ def read(extracted):
     return rows
 
 
+count = 0
+max_iterations = 10
+
 if __name__ == "__main__":
-    while True:
+    while count < max_iterations:
         scraped = scrape(URL)
         extracted = extract(scraped)
         print(extracted)
@@ -74,4 +77,7 @@ if __name__ == "__main__":
             if not row:
                 store(extracted)
                 send_email(message="Hey new tour was found!")
+        count += 1
         time.sleep(2)
+
+connection.close()
