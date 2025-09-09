@@ -1,68 +1,68 @@
 # TourTracker🎸
-Aplicação para web scraping de shows com notificação automática por e-mail.
+Web scraping application for concerts with automatic email notifications.
 
-## 📌 Descrição
-O TourTracker é um projeto em Python que realiza web scraping de uma página de tours utilizando Selectorlib.
+## 📌 Description
+TourTracker is a Python project that performs web scraping on a tours page using Selectorlib.
 
-Os dados extraídos são armazenados em um banco SQLite, e, sempre que um novo evento é detectado, o sistema envia uma notificação por e-mail.
+The extracted data is stored in a SQLite database, and whenever a new event is detected, the system sends a notification via email.
 
-O envio é feito via SMTP, com variáveis de ambiente protegidas pelo dotenv.
+The email is sent using SMTP, with environment variables protected by dotenv.
 
-## Funcionalidades
-- Extrair shows de uma página de tours
-- Armazenar dados em banco SQLite
-- Evitar duplicatas, verificando se o evento já existe
-- Notificar novos shows encontrados via e-mail
+## Features
+- Extract concerts from a tours page
+- Store data in a SQLite database
+- Prevent duplicates by checking if the event already exists
+- Notify new concerts found via email
 
-## 🛠️ Tecnologias Utilizadas
-- **Python** – linguagem principal
-- **Requests** – captura do conteúdo da página
-- **Selectorlib** – extração de dados via YAML
-- **SQLite** – banco de dados local
-- **smtplib + ssl** – envio de e-mails
-- **dotenv** – gerenciamento de variáveis de ambiente
+## 🛠️ Technologies Used
+- **Python** – main language
+- **Requests** – page content fetching
+- **Selectorlib** – data extraction via YAML
+- **SQLite** – local database
+- **smtplib + ssl** – email sending
+- **dotenv** – environment variable management
 
-## 📚 Aprendizados
-O desenvolvimento do TourTracker foi de suma importância pra que eu praticasse:
+## 📚 Learnings
+The development of TourTracker was of great importance for me to practice:
 
-- Web scraping com requests e Selectorlib
-- Integração com banco de dados SQLite
-- Envio de e-mails com SMTP
-- Uso de dotenv para proteger credenciais
-- Estruturação de projetos Python reutilizáveis
+- Web scraping with requests and Selectorlib
+- Integration with SQLite database
+- Sending emails with SMTP
+- Using dotenv to protect credentials
+- Structuring reusable Python projects
 
-## ▶️ Como Rodar Localmente
-Clone o repositório:
+## ▶️ How to Run Locally
+Clone the repository:
 
 ``` bash
 git clone https://github.com/gabriel-oligom/tour-tracker-scraping
 cd tour-tracker-scraping
 ```
 
-Crie e ative um ambiente virtual:
+Create and activate a virtual environment:
 ``` bash
 python -m venv venv
 source venv/bin/activate   # Linux / Mac
 venv\Scripts\activate      # Windows
 ```
 
-Instale as dependências:
+Install dependencies:
 ``` bash
 pip install -r requirements.txt
 ```
 
-Configure as variáveis de ambiente no arquivo .env:
+Set up environment variables in the .env file:
 ``` bash
-EMAIL_USER=seu_email@gmail.com
-EMAIL_PASSWORD=sua_senha
-EMAIL_RECEIVER=destinatario@gmail.com
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASSWORD=your_password
+EMAIL_RECEIVER=receiver@gmail.com
 ```
 
 Execute a aplicação:
 ``` bash
 # Windows
 py main.py
-# ou 
+# or 
 python main.py
 
 # Linux / Mac
